@@ -9,6 +9,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       envFilePath: ['.env.development.local'],
     }),
     TypeOrmModule.forRoot({
+      type: 'postgres',
       database: process.env.DB_DATABASE,
       host: process.env.DB_HOST,
       port: Number(process.env.DB_PORT),
