@@ -18,7 +18,7 @@ export class UserService {
     };
   }
 
-  async findAllUsers() {
+  async findAllUsers(): Promise<User[]> {
     const retornoMap = this.users.map((user) => {
       return {
         ...user,
