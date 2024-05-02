@@ -19,20 +19,14 @@ let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
     }
-    async findAllUsers() {
-        return this.userService.findAllUsers();
-    }
     async createUser(createUser) {
         return this.userService.createUser(createUser);
     }
+    async findAllUsers() {
+        return this.userService.findAllUsers();
+    }
 };
 exports.UserController = UserController;
-__decorate([
-    (0, common_1.Get)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], UserController.prototype, "findAllUsers", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
@@ -40,6 +34,12 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "createUser", null);
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "findAllUsers", null);
 exports.UserController = UserController = __decorate([
     (0, common_1.Controller)("user"),
     __metadata("design:paramtypes", [user_service_1.UserService])

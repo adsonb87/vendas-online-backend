@@ -9,29 +9,35 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserService = void 0;
+exports.PrismaService = void 0;
 const common_1 = require("@nestjs/common");
-const bcrypt_1 = require("bcrypt");
-const user_repository_1 = require("./repository/user.repository");
-let UserService = class UserService {
-    constructor(repository) {
-        this.repository = repository;
+const client_1 = require("@prisma/client");
+let PrismaService = class PrismaService extends client_1.PrismaClient {
+    constructor() {
+        super();
     }
-    async createUser(createUserDto) {
-        const saltRounds = 10;
-        const passwordHashed = await (0, bcrypt_1.hash)(createUserDto.password, saltRounds);
-        return this.repository.create({
-            ...createUserDto,
-            password: passwordHashed,
-        });
+    async onModuleInit() {
+        await this.$connect();
     }
-    async findAllUsers() {
-        return this.repository.findAll();
+    async onModuleDestroy() {
+        await this.$disconnect();
+    }
+    enableShutdownHooks(app) {
+        const closeApp = async () => {
+            try {
+                await app.close();
+            }
+            finally {
+                await this.$disconnect();
+            }
+        };
+        process.on("SIGINT", closeApp);
+        process.on("SIGTERM", closeApp);
     }
 };
-exports.UserService = UserService;
-exports.UserService = UserService = __decorate([
+exports.PrismaService = PrismaService;
+exports.PrismaService = PrismaService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [user_repository_1.UserRepository])
-], UserService);
-//# sourceMappingURL=user.service.js.map
+    __metadata("design:paramtypes", [])
+], PrismaService);
+//# sourceMappingURL=prisma.service.js.map

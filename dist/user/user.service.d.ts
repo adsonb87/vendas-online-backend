@@ -1,14 +1,9 @@
 import { CreateUserDto } from "./dtos/createUser.dto";
-import { User } from "./intefaces/user.interface";
+import { UserEntity } from "./intefaces/user.entity";
+import { UserRepository } from "./repository/user.repository";
 export declare class UserService {
-    private users;
-    createUser(createUserDto: CreateUserDto): Promise<User>;
-    findAllUsers(): Promise<{
-        password: any;
-        id: number;
-        name: string;
-        email: string;
-        phone: string;
-        cpf: string;
-    }[]>;
+    private readonly repository;
+    constructor(repository: UserRepository);
+    createUser(createUserDto: CreateUserDto): Promise<UserEntity>;
+    findAllUsers(): Promise<UserEntity[]>;
 }
