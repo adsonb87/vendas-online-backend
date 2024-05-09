@@ -14,7 +14,9 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 const common_1 = require("@nestjs/common");
+const createUser_dto_1 = require("./dtos/createUser.dto");
 const user_service_1 = require("./user.service");
+const swagger_1 = require("@nestjs/swagger");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
@@ -31,7 +33,7 @@ __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [createUser_dto_1.CreateUserDto]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "createUser", null);
 __decorate([
@@ -41,7 +43,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "findAllUsers", null);
 exports.UserController = UserController = __decorate([
-    (0, common_1.Controller)("user"),
+    (0, swagger_1.ApiTags)("User"),
+    (0, common_1.Controller)("/api/v1/user"),
     __metadata("design:paramtypes", [user_service_1.UserService])
 ], UserController);
 //# sourceMappingURL=user.controller.js.map

@@ -1,4 +1,4 @@
-import { User } from "@prisma/client";
+import { User } from '@prisma/client';
 export declare class UserEntity implements User {
     id: number;
     name: string;
@@ -6,4 +6,7 @@ export declare class UserEntity implements User {
     phone: string;
     cpf: string;
     password: string;
+    type_user: number;
+    createdAt: Date;
+    updatedAt: Date;
 }
