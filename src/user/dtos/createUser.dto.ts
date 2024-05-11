@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { UserEntity } from '../intefaces/user.entity';
+import { UserEntity } from '../interfaces/user.entity';
 import { IsNotEmpty, IsNumber, IsString, maxLength } from 'class-validator';
 
 export class CreateUserDto extends UserEntity {

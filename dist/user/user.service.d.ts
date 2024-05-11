@@ -1,6 +1,6 @@
-import { CreateUserDto } from "./dtos/createUser.dto";
-import { UserEntity } from "./intefaces/user.entity";
-import { UserRepository } from "./repository/user.repository";
+import { CreateUserDto } from './dtos/createUser.dto';
+import { UserEntity } from './interfaces/user.entity';
+import { UserRepository } from './repository/user.repository';
 export declare class UserService {
     private readonly repository;
     constructor(repository: UserRepository);

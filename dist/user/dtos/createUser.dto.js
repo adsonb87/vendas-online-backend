@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateUserDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
-const user_entity_1 = require("../intefaces/user.entity");
+const user_entity_1 = require("../interfaces/user.entity");
 const class_validator_1 = require("class-validator");
 class CreateUserDto extends user_entity_1.UserEntity {
 }

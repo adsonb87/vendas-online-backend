@@ -1,4 +1,4 @@
-import { UserEntity } from '../intefaces/user.entity';
+import { UserEntity } from '../interfaces/user.entity';
 export declare class CreateUserDto extends UserEntity {
     name: string;
     email: string;

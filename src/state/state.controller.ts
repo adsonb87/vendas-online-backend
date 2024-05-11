@@ -1,34 +1,57 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
 import { StateService } from './state.service';
 import { CreateStateDto } from './dto/create-state.dto';
 import { UpdateStateDto } from './dto/update-state.dto';
+import { ApiTags } from '@nestjs/swagger';
+import { Console } from 'console';
 
-@Controller('state')
+@ApiTags('State')
+@Controller('/api/v1/state')
 export class StateController {
   constructor(private readonly stateService: StateService) {}
 
   @Post()
-  create(@Body() createStateDto: CreateStateDto) {
-    return this.stateService.create(createStateDto);
+  async create(@Body() createStateDto: CreateStateDto) {
+    return await this.stateService.create(createStateDto);
   }
 
   @Get()
-  findAll() {
-    return this.stateService.findAll();
+  async findAll() {
+    return await this.stateService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.stateService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    return await this.stateService.findOne(+id);
+  }
+
+  @Get(':id/city')
+  async findStateCity(@Param('id') id: string) {
+    return await this.stateService.findStateCity(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateStateDto: UpdateStateDto) {
-    return this.stateService.update(+id, updateStateDto);
+  async update(
+    @Param('id') id: string,
+    @Body() updateStateDto: UpdateStateDto,
+  ) {
+    return await this.stateService.update(+id, updateStateDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.stateService.remove(+id);
+  async remove(@Param('id') id: string) {
+    return {
+      message: 'deletado',
+      result: await this.stateService.remove(+id),
+    };
   }
 }

@@ -1,6 +1,6 @@
-import { PrismaService } from "src/prisma/prisma.service";
-import { UserEntity } from "../intefaces/user.entity";
-import { CreateUserDto } from "../dtos/createUser.dto";
+import { PrismaService } from 'src/prisma/prisma.service';
+import { UserEntity } from '../interfaces/user.entity';
+import { CreateUserDto } from '../dtos/createUser.dto';
 export declare class UserRepository {
     private readonly prisma;
     constructor(prisma: PrismaService);
