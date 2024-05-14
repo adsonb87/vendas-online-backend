@@ -18,15 +18,32 @@ let UserService = class UserService {
         this.repository = repository;
     }
     async createUser(createUserDto) {
-        const saltRounds = 10;
-        const passwordHashed = await (0, bcrypt_1.hash)(createUserDto.password, saltRounds);
-        return this.repository.create({
+        const passwordHashed = await this.hashPassword(createUserDto.password);
+        return await this.repository.create({
             ...createUserDto,
             password: passwordHashed,
         });
     }
     async findAllUsers() {
-        return this.repository.findAll();
+        return await this.repository.findAll();
+    }
+    async findOne(id) {
+        return await this.repository.findOne(id);
+    }
+    async update(id, user) {
+        if (user.password) {
+            const passwordHashed = await this.hashPassword(user.password);
+            user.password = passwordHashed;
+        }
+        return await this.repository.update(id, user);
+    }
+    async delete(id) {
+        return await this.repository.delete(id);
+    }
+    async hashPassword(password) {
+        const saltRounds = 10;
+        const passwordHashed = await (0, bcrypt_1.hash)(password, saltRounds);
+        return passwordHashed;
     }
 };
 exports.UserService = UserService;

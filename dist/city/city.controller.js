@@ -17,24 +17,25 @@ const common_1 = require("@nestjs/common");
 const city_service_1 = require("./city.service");
 const create_city_dto_1 = require("./dto/create-city.dto");
 const update_city_dto_1 = require("./dto/update-city.dto");
+const swagger_1 = require("@nestjs/swagger");
 let CityController = class CityController {
     constructor(cityService) {
         this.cityService = cityService;
     }
-    create(createCityDto) {
-        return this.cityService.create(createCityDto);
+    async create(createCityDto) {
+        return await this.cityService.create(createCityDto);
     }
-    findAll() {
-        return this.cityService.findAll();
+    async findAll() {
+        return await this.cityService.findAll();
     }
-    findOne(id) {
-        return this.cityService.findOne(+id);
+    async findOne(id) {
+        return await this.cityService.findOne(+id);
     }
-    update(id, updateCityDto) {
-        return this.cityService.update(+id, updateCityDto);
+    async update(id, updateCityDto) {
+        return await this.cityService.update(+id, updateCityDto);
     }
-    remove(id) {
-        return this.cityService.remove(+id);
+    async remove(id) {
+        return await this.cityService.remove(+id);
     }
 };
 exports.CityController = CityController;
@@ -43,20 +44,20 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_city_dto_1.CreateCityDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], CityController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], CityController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], CityController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Patch)(':id'),
@@ -64,17 +65,18 @@ __decorate([
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, update_city_dto_1.UpdateCityDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], CityController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], CityController.prototype, "remove", null);
 exports.CityController = CityController = __decorate([
-    (0, common_1.Controller)('city'),
+    (0, swagger_1.ApiTags)('City'),
+    (0, common_1.Controller)('/api/v1/city'),
     __metadata("design:paramtypes", [city_service_1.CityService])
 ], CityController);
 //# sourceMappingURL=city.controller.js.map

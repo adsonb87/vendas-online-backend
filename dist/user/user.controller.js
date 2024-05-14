@@ -17,15 +17,25 @@ const common_1 = require("@nestjs/common");
 const createUser_dto_1 = require("./dtos/createUser.dto");
 const user_service_1 = require("./user.service");
 const swagger_1 = require("@nestjs/swagger");
+const update_user_dto_1 = require("./dtos/update-user.dto");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
     }
     async createUser(createUser) {
-        return this.userService.createUser(createUser);
+        return await this.userService.createUser(createUser);
     }
     async findAllUsers() {
-        return this.userService.findAllUsers();
+        return await this.userService.findAllUsers();
+    }
+    async findOne(id) {
+        return await this.userService.findOne(+id);
+    }
+    async update(id, updateUserDto) {
+        return await this.userService.update(+id, updateUserDto);
+    }
+    async delete(id) {
+        return await this.userService.delete(+id);
     }
 };
 exports.UserController = UserController;
@@ -42,9 +52,31 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "findAllUsers", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Patch)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, update_user_dto_1.UpdateUserDto]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "update", null);
+__decorate([
+    (0, common_1.Delete)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "delete", null);
 exports.UserController = UserController = __decorate([
-    (0, swagger_1.ApiTags)("User"),
-    (0, common_1.Controller)("/api/v1/user"),
+    (0, swagger_1.ApiTags)('User'),
+    (0, common_1.Controller)('/api/v1/user'),
     __metadata("design:paramtypes", [user_service_1.UserService])
 ], UserController);
 //# sourceMappingURL=user.controller.js.map

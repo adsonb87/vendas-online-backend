@@ -4,9 +4,9 @@ import { UpdateCityDto } from './dto/update-city.dto';
 export declare class CityController {
     private readonly cityService;
     constructor(cityService: CityService);
-    create(createCityDto: CreateCityDto): string;
-    findAll(): string;
-    findOne(id: string): string;
-    update(id: string, updateCityDto: UpdateCityDto): string;
-    remove(id: string): string;
+    create(createCityDto: CreateCityDto): Promise<import("./interfaces/city.entity").CityEntity>;
+    findAll(): Promise<import("./interfaces/city.entity").CityEntity[]>;
+    findOne(id: string): Promise<import("./interfaces/city.entity").CityEntity>;
+    update(id: string, updateCityDto: UpdateCityDto): Promise<import("./interfaces/city.entity").CityEntity>;
+    remove(id: string): Promise<import("./interfaces/city.entity").CityEntity>;
 }

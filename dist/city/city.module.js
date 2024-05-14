@@ -20,7 +20,7 @@ exports.CityModule = CityModule = __decorate([
     (0, common_1.Module)({
         imports: [prisma_module_1.PrismaModule],
         controllers: [city_controller_1.CityController],
-        providers: [city_service_1.CityService, prisma_service_1.PrismaService, city_repository_1.cityRepository],
+        providers: [city_service_1.CityService, prisma_service_1.PrismaService, city_repository_1.CityRepository],
         exports: [city_service_1.CityService],
     })
 ], CityModule);

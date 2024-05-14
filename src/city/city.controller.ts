@@ -1,34 +1,44 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { CityService } from './city.service';
 import { CreateCityDto } from './dto/create-city.dto';
 import { UpdateCityDto } from './dto/update-city.dto';
+import { ApiTags } from '@nestjs/swagger';
 
-@Controller('city')
+@ApiTags('City')
+@Controller('/api/v1/city')
 export class CityController {
   constructor(private readonly cityService: CityService) {}
 
   @Post()
-  create(@Body() createCityDto: CreateCityDto) {
-    return this.cityService.create(createCityDto);
+  async create(@Body() createCityDto: CreateCityDto) {
+    return await this.cityService.create(createCityDto);
   }
 
   @Get()
-  findAll() {
-    return this.cityService.findAll();
+  async findAll() {
+    return await this.cityService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.cityService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    return await this.cityService.findOne(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCityDto: UpdateCityDto) {
-    return this.cityService.update(+id, updateCityDto);
+  async update(@Param('id') id: string, @Body() updateCityDto: UpdateCityDto) {
+    return await this.cityService.update(+id, updateCityDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.cityService.remove(+id);
+  async remove(@Param('id') id: string) {
+    return await this.cityService.remove(+id);
   }
 }
