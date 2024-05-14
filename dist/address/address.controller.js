@@ -17,24 +17,25 @@ const common_1 = require("@nestjs/common");
 const address_service_1 = require("./address.service");
 const create_address_dto_1 = require("./dto/create-address.dto");
 const update_address_dto_1 = require("./dto/update-address.dto");
+const swagger_1 = require("@nestjs/swagger");
 let AddressController = class AddressController {
     constructor(addressService) {
         this.addressService = addressService;
     }
-    create(createAddressDto) {
-        return this.addressService.create(createAddressDto);
+    async create(createAddressDto) {
+        return await this.addressService.create(createAddressDto);
     }
-    findAll() {
-        return this.addressService.findAll();
+    async findAll() {
+        return await this.addressService.findAll();
     }
-    findOne(id) {
-        return this.addressService.findOne(+id);
+    async findOne(id) {
+        return await this.addressService.findOne(+id);
     }
-    update(id, updateAddressDto) {
-        return this.addressService.update(+id, updateAddressDto);
+    async update(id, updateAddressDto) {
+        return await this.addressService.update(+id, updateAddressDto);
     }
-    remove(id) {
-        return this.addressService.remove(+id);
+    async remove(id) {
+        return await this.addressService.remove(+id);
     }
 };
 exports.AddressController = AddressController;
@@ -43,20 +44,20 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_address_dto_1.CreateAddressDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], AddressController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], AddressController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], AddressController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Patch)(':id'),
@@ -64,17 +65,18 @@ __decorate([
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, update_address_dto_1.UpdateAddressDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], AddressController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], AddressController.prototype, "remove", null);
 exports.AddressController = AddressController = __decorate([
-    (0, common_1.Controller)('address'),
+    (0, swagger_1.ApiTags)('Address'),
+    (0, common_1.Controller)('/api/v1/address'),
     __metadata("design:paramtypes", [address_service_1.AddressService])
 ], AddressController);
 //# sourceMappingURL=address.controller.js.map

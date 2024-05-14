@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsNotEmpty, IsString } from 'class-validator';
 import { CityEntity } from '../interfaces/city.entity';
 import { ApiProperty } from '@nestjs/swagger';
 
@@ -15,7 +15,5 @@ export class CreateCityDto extends CityEntity {
     example: 0,
     description: 'Estado',
   })
-  @IsNumber()
-  @IsNotEmpty()
   stateId: number;
 }

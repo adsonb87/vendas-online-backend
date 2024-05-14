@@ -30,8 +30,6 @@ __decorate([
         example: 0,
         description: 'Estado',
     }),
-    (0, class_validator_1.IsNumber)(),
-    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Number)
 ], CreateCityDto.prototype, "stateId", void 0);
 //# sourceMappingURL=create-city.dto.js.map

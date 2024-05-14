@@ -1,6 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { CreateCityDto } from './dto/create-city.dto';
-import { UpdateCityDto } from './dto/update-city.dto';
 import { CityRepository } from './repository/city.repository';
 import { CityEntity } from './interfaces/city.entity';
 
@@ -8,8 +6,10 @@ import { CityEntity } from './interfaces/city.entity';
 export class CityService {
   constructor(private readonly repository: CityRepository) {}
 
-  async create(createCityDto: CreateCityDto): Promise<CityEntity> {
-    return await this.repository.create(createCityDto);
+  async create(createCityDto): Promise<CityEntity> {
+    const { state, ...city } = createCityDto;
+
+    return await this.repository.create(city, state);
   }
 
   async findAll(): Promise<CityEntity[]> {
@@ -20,9 +20,16 @@ export class CityService {
     return await this.repository.findOne(id);
   }
 
-  async update(id: number, updateCityDto: UpdateCityDto): Promise<CityEntity> {
-    //const { state, ...city } = updateCityDto;
-    return await this.repository.update(id, updateCityDto);
+  async update(id: number, updateCityDto): Promise<CityEntity> {
+    const { state, ...city } = updateCityDto;
+
+    if (!state) {
+      return await this.repository.updateCity(id, city);
+    } else {
+      return await this.repository.updateCityState(id, city, state);
+    }
+
+    //return await this.repository.update(id, city, state);
   }
 
   async remove(id: number): Promise<CityEntity> {

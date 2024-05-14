@@ -1,2 +1,2 @@
-export declare class Address {
+export declare class AddressEntity {
 }

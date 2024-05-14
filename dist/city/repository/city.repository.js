@@ -16,8 +16,18 @@ let CityRepository = class CityRepository {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    async create(createCityDto) {
-        return await this.prisma.city.create({ data: createCityDto });
+    async create(city, state) {
+        return await this.prisma.city.create({
+            data: {
+                ...city,
+                state: {
+                    connect: {
+                        name: state.name,
+                    },
+                },
+            },
+            include: { state: true },
+        });
     }
     async findAll() {
         return await this.prisma.city.findMany();
@@ -28,10 +38,27 @@ let CityRepository = class CityRepository {
             include: { state: true },
         });
     }
-    async update(id, city) {
+    async updateCity(id, city) {
         return await this.prisma.city.update({
             where: { id },
-            data: city,
+            data: {
+                ...city,
+            },
+            include: { state: true },
+        });
+    }
+    async updateCityState(id, city, state) {
+        return await this.prisma.city.update({
+            where: { id },
+            data: {
+                ...city,
+                state: {
+                    connect: {
+                        name: state.name,
+                    },
+                },
+            },
+            include: { state: true },
         });
     }
     async remove(id) {

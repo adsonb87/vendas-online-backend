@@ -1,16 +1,23 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { CreateCityDto } from '../dto/create-city.dto';
 import { CityEntity } from '../interfaces/city.entity';
-import { UpdateCityDto } from '../dto/update-city.dto';
-import { connect } from 'http2';
 
 @Injectable()
 export class CityRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(createCityDto: CreateCityDto): Promise<CityEntity> {
-    return await this.prisma.city.create({ data: createCityDto });
+  async create(city, state): Promise<CityEntity> {
+    return await this.prisma.city.create({
+      data: {
+        ...city,
+        state: {
+          connect: {
+            name: state.name,
+          },
+        },
+      },
+      include: { state: true },
+    });
   }
 
   async findAll(): Promise<CityEntity[]> {
@@ -24,21 +31,28 @@ export class CityRepository {
     });
   }
 
-  async update(id: number, city: UpdateCityDto): Promise<CityEntity> {
-    // return await this.prisma.city.update({
-    //   where: { id },
-    //   data: {
-    //     ...city,
-    //     state: {
-    //       connect: {
-    //         name: state.name,
-    //       },
-    //     },
-    //   },
-    // });
+  async updateCity(id: number, city): Promise<CityEntity> {
     return await this.prisma.city.update({
       where: { id },
-      data: city,
+      data: {
+        ...city,
+      },
+      include: { state: true },
+    });
+  }
+
+  async updateCityState(id: number, city, state): Promise<CityEntity> {
+    return await this.prisma.city.update({
+      where: { id },
+      data: {
+        ...city,
+        state: {
+          connect: {
+            name: state.name,
+          },
+        },
+      },
+      include: { state: true },
     });
   }
 

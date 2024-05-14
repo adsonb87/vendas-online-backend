@@ -17,7 +17,8 @@ let CityService = class CityService {
         this.repository = repository;
     }
     async create(createCityDto) {
-        return await this.repository.create(createCityDto);
+        const { state, ...city } = createCityDto;
+        return await this.repository.create(city, state);
     }
     async findAll() {
         return await this.repository.findAll();
@@ -26,7 +27,13 @@ let CityService = class CityService {
         return await this.repository.findOne(id);
     }
     async update(id, updateCityDto) {
-        return await this.repository.update(id, updateCityDto);
+        const { state, ...city } = updateCityDto;
+        if (!state) {
+            return await this.repository.updateCity(id, city);
+        }
+        else {
+            return await this.repository.updateCityState(id, city, state);
+        }
     }
     async remove(id) {
         return await this.repository.remove(id);
