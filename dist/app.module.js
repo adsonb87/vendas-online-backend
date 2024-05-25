@@ -15,12 +15,13 @@ const app_service_1 = require("./app.service");
 const state_module_1 = require("./state/state.module");
 const city_module_1 = require("./city/city.module");
 const address_module_1 = require("./address/address.module");
+const cache_module_1 = require("./cache/cache.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [user_module_1.UserModule, prisma_module_1.PrismaModule, state_module_1.StateModule, city_module_1.CityModule, address_module_1.AddressModule],
+        imports: [user_module_1.UserModule, prisma_module_1.PrismaModule, state_module_1.StateModule, city_module_1.CityModule, address_module_1.AddressModule, cache_module_1.CacheModule],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })

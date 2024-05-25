@@ -24,13 +24,6 @@ export class StateRepository {
     });
   }
 
-  async findStateCity(id: number): Promise<StateEntity> {
-    return await this.prisma.state.findUnique({
-      where: { id },
-      include: { city: true },
-    });
-  }
-
   async update(id: number, state: UpdateStateDto): Promise<StateEntity> {
     return await this.prisma.state.update({
       where: { id },

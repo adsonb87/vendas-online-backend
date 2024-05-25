@@ -16,10 +16,6 @@ export class StateService {
     return await this.repository.findAll();
   }
 
-  async findStateCity(id: number): Promise<StateEntity> {
-    return await this.repository.findStateCity(id);
-  }
-
   async findOne(id: number): Promise<StateEntity> {
     return await this.repository.findOne(id);
   }

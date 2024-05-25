@@ -31,9 +31,6 @@ let StateController = class StateController {
     async findOne(id) {
         return await this.stateService.findOne(+id);
     }
-    async findStateCity(id) {
-        return await this.stateService.findStateCity(+id);
-    }
     async update(id, updateStateDto) {
         return await this.stateService.update(+id, updateStateDto);
     }
@@ -65,13 +62,6 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], StateController.prototype, "findOne", null);
-__decorate([
-    (0, common_1.Get)(':id/city'),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Promise)
-], StateController.prototype, "findStateCity", null);
 __decorate([
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id')),

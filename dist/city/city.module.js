@@ -13,12 +13,13 @@ const city_controller_1 = require("./city.controller");
 const prisma_module_1 = require("../prisma/prisma.module");
 const prisma_service_1 = require("../prisma/prisma.service");
 const city_repository_1 = require("./repository/city.repository");
+const cache_module_1 = require("../cache/cache.module");
 let CityModule = class CityModule {
 };
 exports.CityModule = CityModule;
 exports.CityModule = CityModule = __decorate([
     (0, common_1.Module)({
-        imports: [prisma_module_1.PrismaModule],
+        imports: [prisma_module_1.PrismaModule, cache_module_1.CacheModule],
         controllers: [city_controller_1.CityController],
         providers: [city_service_1.CityService, prisma_service_1.PrismaService, city_repository_1.CityRepository],
         exports: [city_service_1.CityService],

@@ -8,7 +8,6 @@ export declare class StateRepository {
     create(state: CreateStateDto): Promise<StateEntity>;
     findAll(): Promise<StateEntity[]>;
     findOne(id: any): Promise<StateEntity>;
-    findStateCity(id: number): Promise<StateEntity>;
     update(id: number, state: UpdateStateDto): Promise<StateEntity>;
     remove(id: number): Promise<StateEntity>;
 }

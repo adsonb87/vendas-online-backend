@@ -7,7 +7,6 @@ export declare class StateController {
     create(createStateDto: CreateStateDto): Promise<import("./interfaces/state.entity").StateEntity>;
     findAll(): Promise<import("./interfaces/state.entity").StateEntity[]>;
     findOne(id: string): Promise<import("./interfaces/state.entity").StateEntity>;
-    findStateCity(id: string): Promise<import("./interfaces/state.entity").StateEntity>;
     update(id: string, updateStateDto: UpdateStateDto): Promise<import("./interfaces/state.entity").StateEntity>;
     remove(id: string): Promise<{
         message: string;

@@ -7,7 +7,6 @@ export declare class StateService {
     constructor(repository: StateRepository);
     create(createStateDto: CreateStateDto): Promise<StateEntity>;
     findAll(): Promise<StateEntity[]>;
-    findStateCity(id: number): Promise<StateEntity>;
     findOne(id: number): Promise<StateEntity>;
     update(id: number, updateStateDto: UpdateStateDto): Promise<StateEntity>;
     remove(id: number): Promise<StateEntity>;

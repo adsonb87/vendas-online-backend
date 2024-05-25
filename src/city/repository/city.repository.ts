@@ -31,6 +31,12 @@ export class CityRepository {
     });
   }
 
+  async findCityForState(id: number): Promise<CityEntity[]> {
+    return await this.prisma.city.findMany({
+      where: { stateId: id },
+    });
+  }
+
   async updateCity(id: number, city): Promise<CityEntity> {
     return await this.prisma.city.update({
       where: { id },

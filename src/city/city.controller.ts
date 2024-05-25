@@ -32,6 +32,11 @@ export class CityController {
     return await this.cityService.findOne(+id);
   }
 
+  @Get('state/:id')
+  async findCityForState(@Param('id') id: string) {
+    return await this.cityService.findCityForState(+id);
+  }
+
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateCityDto: UpdateCityDto) {
     return await this.cityService.update(+id, updateCityDto);

@@ -22,9 +22,6 @@ let StateService = class StateService {
     async findAll() {
         return await this.repository.findAll();
     }
-    async findStateCity(id) {
-        return await this.repository.findStateCity(id);
-    }
     async findOne(id) {
         return await this.repository.findOne(id);
     }

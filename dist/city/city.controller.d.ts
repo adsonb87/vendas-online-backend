@@ -7,6 +7,7 @@ export declare class CityController {
     create(createCityDto: CreateCityDto): Promise<import("./interfaces/city.entity").CityEntity>;
     findAll(): Promise<import("./interfaces/city.entity").CityEntity[]>;
     findOne(id: string): Promise<import("./interfaces/city.entity").CityEntity>;
+    findCityForState(id: string): Promise<import("./interfaces/city.entity").CityEntity[]>;
     update(id: string, updateCityDto: UpdateCityDto): Promise<import("./interfaces/city.entity").CityEntity>;
     remove(id: string): Promise<import("./interfaces/city.entity").CityEntity>;
 }

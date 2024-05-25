@@ -12,7 +12,6 @@ import { StateService } from './state.service';
 import { CreateStateDto } from './dto/create-state.dto';
 import { UpdateStateDto } from './dto/update-state.dto';
 import { ApiTags } from '@nestjs/swagger';
-import { Console } from 'console';
 
 @ApiTags('State')
 @Controller('/api/v1/state')
@@ -32,11 +31,6 @@ export class StateController {
   @Get(':id')
   async findOne(@Param('id') id: string) {
     return await this.stateService.findOne(+id);
-  }
-
-  @Get(':id/city')
-  async findStateCity(@Param('id') id: string) {
-    return await this.stateService.findStateCity(+id);
   }
 
   @Patch(':id')

@@ -31,6 +31,9 @@ let CityController = class CityController {
     async findOne(id) {
         return await this.cityService.findOne(+id);
     }
+    async findCityForState(id) {
+        return await this.cityService.findCityForState(+id);
+    }
     async update(id, updateCityDto) {
         return await this.cityService.update(+id, updateCityDto);
     }
@@ -59,6 +62,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], CityController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Get)('state/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], CityController.prototype, "findCityForState", null);
 __decorate([
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id')),

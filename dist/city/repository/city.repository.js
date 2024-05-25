@@ -38,6 +38,11 @@ let CityRepository = class CityRepository {
             include: { state: true },
         });
     }
+    async findCityForState(id) {
+        return await this.prisma.city.findMany({
+            where: { stateId: id },
+        });
+    }
     async updateCity(id, city) {
         return await this.prisma.city.update({
             where: { id },
